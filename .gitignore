@@ -1,8 +1,31 @@
+# Secrets and local config
 .env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+secrets.*
+*.key
+*.pem
+*.p12
+*.crt
+
+# Local IDE and OS files
 .DS_Store
 .idea/
+
+# Python runtime/cache
 __pycache__/
 *.pyc
 .venv/
 venv/
-.streamlit/secrets.toml
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
+# Logs and generated build output
+*.log
+dist/
+build/
+frontend/node_modules/
+frontend/dist/
