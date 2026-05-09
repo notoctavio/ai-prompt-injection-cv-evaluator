@@ -469,26 +469,20 @@ select:disabled {
   max-width: 1160px;
   margin: 0 auto;
   padding: clamp(72px, 9vw, 116px) clamp(22px, 8vw, 124px);
-  content-visibility: auto;
-  contain-intrinsic-size: 560px;
+  scroll-margin-top: 170px;
 }
 
 .section-intro {
-  max-width: 720px;
-  margin: 0 auto 28px;
+  max-width: 780px;
+  margin: 0 auto 30px;
   text-align: center;
 }
 
-.section-intro span {
-  color: #85858d;
-  font-size: 13px;
-  font-weight: 600;
-}
-
 .section-intro h2 {
-  margin: 12px 0 0;
+  max-width: 760px;
+  margin: 0 auto;
   color: #f5f5f7;
-  font-size: clamp(30px, 4vw, 52px);
+  font-size: clamp(32px, 3.8vw, 50px);
   font-weight: 680;
   line-height: 1.05;
   letter-spacing: 0;
@@ -509,12 +503,16 @@ select:disabled {
 .flow-card {
   position: relative;
   min-width: 0;
+  min-height: 162px;
   border: 0;
   border-radius: 20px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  padding: 22px;
-  background: transparent;
+  align-items: end;
+  padding: clamp(20px, 2.1vw, 24px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008)),
+    transparent;
   box-shadow: none;
   contain: layout paint;
 }
@@ -530,26 +528,30 @@ select:disabled {
   content: "";
 }
 
-.proof-card span,
-.flow-card > span {
+.card-index {
+  position: absolute;
+  top: 18px;
+  right: 22px;
   display: block;
-  width: fit-content;
-  min-height: 0;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  background: transparent;
-  color: rgba(244, 244, 245, 0.34);
+  color: rgba(244, 244, 245, 0.14);
   font-family: "Gabarito", "Be Vietnam Pro", sans-serif;
-  font-size: 13px;
-  font-weight: 720;
-  line-height: 0.9;
-  letter-spacing: 0.08em;
+  font-size: clamp(52px, 5vw, 70px);
+  font-weight: 780;
+  line-height: 0.78;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+.card-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding-top: 42px;
 }
 
 .proof-card h3,
 .flow-card h3 {
-  margin: 34px 0 8px;
+  margin: 0 0 9px;
   color: var(--text);
   font-size: 19px;
   font-weight: 650;
@@ -558,6 +560,7 @@ select:disabled {
 
 .proof-card p,
 .flow-card p {
+  max-width: 280px;
   margin: 0;
   color: var(--muted);
   font-size: 14px;
@@ -1741,7 +1744,8 @@ select:disabled {
   }
 
   .landing-nav {
-    align-items: flex-start;
+    align-items: center;
+    min-height: 58px;
   }
 
   .landing-nav .brand span {
@@ -1766,7 +1770,18 @@ select:disabled {
 
   .proof-card,
   .flow-card {
+    min-height: 158px;
     padding: 19px;
+  }
+
+  .card-index {
+    top: 18px;
+    right: 19px;
+    font-size: 56px;
+  }
+
+  .card-copy {
+    padding-top: 42px;
   }
 
   .topbar h1 {

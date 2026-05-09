@@ -280,25 +280,23 @@ function LandingPage({ onStart }) {
 
       <section className="landing-section proof-section" id="proof">
         <div className="section-intro">
-          <span>What the project proves</span>
-          <h2>A clear attack and defense story for your presentation.</h2>
+          <h2>A hidden instruction changes the hiring decision.</h2>
         </div>
         <div className="proof-grid">
-          <ProofCard index="01" title="Hidden content" text="A normal-looking PDF can contain instructions that extraction tools still pass to the model." />
-          <ProofCard index="02" title="Model takeover" text="The vulnerable evaluator can treat resume text as an instruction instead of candidate data." />
-          <ProofCard index="03" title="Prompt isolation" text="The protected path reframes the CV as untrusted evidence and compares the behavior." />
+          <ProofCard index="01" title="Hidden content" text="PDF extraction can pass invisible or camouflaged instructions into the model context." />
+          <ProofCard index="02" title="Model takeover" text="The vulnerable evaluator treats malicious resume text like a higher-priority command." />
+          <ProofCard index="03" title="Prompt isolation" text="The protected path frames the CV as untrusted evidence and ignores instructions inside it." />
         </div>
       </section>
 
       <section className="landing-section flow-showcase" id="flow">
         <div className="section-intro">
-          <span>Presentation path</span>
-          <h2>Built for a fast, visual classroom demo.</h2>
+          <h2>Run the demo in three clean steps.</h2>
         </div>
         <div className="flow-cards">
-          <FlowCard step="01" title="Load CV" text="Upload a resume or pick the poisoned sample." />
-          <FlowCard step="02" title="Reveal extraction" text="Show what the AI reads through the X-Ray panel." />
-          <FlowCard step="03" title="Compare outputs" text="Run vulnerable and protected evaluations side by side." />
+          <FlowCard step="01" title="Load CV" text="Choose a sample or upload a resume, then parse the document." />
+          <FlowCard step="02" title="Reveal extraction" text="Expose what the evaluator receives, including hidden instruction-like text." />
+          <FlowCard step="03" title="Compare outputs" text="Run vulnerable and protected results side by side for the final explanation." />
         </div>
         <button className="button hero-primary flow-cta" type="button" onClick={onStart}>
           Open review desk
@@ -510,9 +508,11 @@ function Brand({ compact = false }) {
 function ProofCard({ index, title, text }) {
   return (
     <article className="proof-card">
-      <span>{index}</span>
-      <h3>{title}</h3>
-      <p>{text}</p>
+      <span className="card-index">{index}</span>
+      <div className="card-copy">
+        <h3>{title}</h3>
+        <p>{text}</p>
+      </div>
     </article>
   );
 }
@@ -520,8 +520,8 @@ function ProofCard({ index, title, text }) {
 function FlowCard({ step, title, text }) {
   return (
     <article className="flow-card">
-      <span>{step}</span>
-      <div>
+      <span className="card-index">{step}</span>
+      <div className="card-copy">
         <h3>{title}</h3>
         <p>{text}</p>
       </div>
