@@ -43,19 +43,19 @@
   font-family:
     "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter,
     "Segoe UI", sans-serif;
-  color: #e4e4e7;
-  background: #0a0a0a;
+  color: #e7e7ea;
+  background: #121214;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 
-  --page: #0a0a0a;
-  --page-soft: #141414;
-  --surface: rgba(255, 255, 255, 0.055);
-  --surface-strong: rgba(255, 255, 255, 0.095);
-  --surface-glass: rgba(255, 255, 255, 0.07);
-  --line: rgba(255, 255, 255, 0.12);
-  --line-strong: rgba(255, 255, 255, 0.2);
+  --page: #121214;
+  --page-soft: #1b1b1e;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.105);
+  --surface-glass: rgba(255, 255, 255, 0.076);
+  --line: rgba(255, 255, 255, 0.13);
+  --line-strong: rgba(255, 255, 255, 0.22);
   --text: #f4f4f5;
   --muted: #a1a1aa;
   --faint: #71717a;
@@ -70,6 +70,7 @@
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 16px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -84,8 +85,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 80% 6%, rgba(255, 255, 255, 0.07), transparent 30%),
-    linear-gradient(180deg, #141414 0%, #0a0a0a 48%),
+    radial-gradient(circle at 78% 4%, rgba(255, 255, 255, 0.075), transparent 30%),
+    linear-gradient(180deg, #242427 0%, #151517 50%),
     var(--page);
 }
 
@@ -131,10 +132,10 @@ select:disabled {
   white-space: normal;
   overflow-wrap: anywhere;
   transition:
-    transform 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+    transform 160ms var(--ease-out),
+    background 160ms var(--ease-out),
+    border-color 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out);
 }
 
 .button:hover:not(:disabled) {
@@ -145,7 +146,7 @@ select:disabled {
 .hero-primary,
 .sidebar-primary {
   background: #a1a1aa;
-  color: #0a0a0a;
+  color: #111113;
   box-shadow: 0 16px 34px rgba(161, 161, 170, 0.16);
 }
 
@@ -162,9 +163,9 @@ select:disabled {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.075), transparent 34%),
-    radial-gradient(circle at 16% 56%, rgba(255, 255, 255, 0.035), transparent 28%),
-    linear-gradient(180deg, #141414 0%, #0a0a0a 64%);
+    radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.08), transparent 34%),
+    radial-gradient(circle at 16% 56%, rgba(255, 255, 255, 0.04), transparent 28%),
+    linear-gradient(180deg, #242427 0%, #151517 64%);
 }
 
 .landing-nav {
@@ -180,9 +181,9 @@ select:disabled {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   padding: 10px 12px 10px 18px;
-  background: rgba(20, 20, 20, 0.82);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26);
+  background: rgba(27, 27, 30, 0.84);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
   transform: translateX(-50%);
 }
 
@@ -211,15 +212,13 @@ select:disabled {
   min-height: 36px;
   padding: 8px 16px;
   background: #a1a1aa;
-  color: #0a0a0a;
+  color: #111113;
   box-shadow: none;
 }
 
 .brand {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
+  align-items: center;
   min-width: 0;
 }
 
@@ -227,8 +226,14 @@ select:disabled {
   flex: 0 0 auto;
 }
 
-.brand.compact span {
+.brand.compact .brand-copy span {
   display: none;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
 }
 
 .brand strong,
@@ -239,14 +244,45 @@ select:disabled {
 
 .brand strong {
   color: var(--text);
-  font-size: 15px;
-  font-weight: 700;
+  font-family: "Gabarito", "Be Vietnam Pro", sans-serif;
+  font-size: 19px;
+  font-weight: 820;
+  line-height: 0.95;
   letter-spacing: 0;
+}
+
+.wordmark,
+.wordmark-title {
+  font-family: "Gabarito", "Be Vietnam Pro", sans-serif;
+  font-weight: 820;
+  letter-spacing: 0;
+}
+
+.wordmark {
+  font-size: 22px;
+  line-height: 0.95;
+}
+
+.wordmark-title {
+  color: #f2f2f4;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.wordmark em,
+.wordmark-title em {
+  color: #c8c8cf;
+  font-style: normal;
+  font-weight: 560;
+}
+
+.brand.compact .wordmark {
+  font-size: 18px;
 }
 
 .brand span {
   color: var(--faint);
-  font-size: 11.5px;
+  font-size: 11px;
 }
 
 .landing-hero {
@@ -307,8 +343,9 @@ select:disabled {
   padding: 12px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.072), rgba(255, 255, 255, 0.032)),
-    rgba(14, 14, 14, 0.86);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+    rgba(22, 22, 24, 0.88);
+  box-shadow: 0 24px 62px rgba(0, 0, 0, 0.3);
+  contain: layout paint;
   text-align: left;
 }
 
@@ -416,7 +453,7 @@ select:disabled {
   grid-column: 1 / -1;
   display: grid;
   gap: 7px;
-  background: #0a0a0a;
+  background: #111113;
   color: #a7a7ad;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 12px;
@@ -432,6 +469,8 @@ select:disabled {
   max-width: 1160px;
   margin: 0 auto;
   padding: clamp(72px, 9vw, 116px) clamp(22px, 8vw, 124px);
+  content-visibility: auto;
+  contain-intrinsic-size: 560px;
 }
 
 .section-intro {
@@ -472,9 +511,12 @@ select:disabled {
   min-width: 0;
   border: 0;
   border-radius: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   padding: 22px;
   background: transparent;
   box-shadow: none;
+  contain: layout paint;
 }
 
 .proof-card:not(:last-child)::after,
@@ -490,21 +532,24 @@ select:disabled {
 
 .proof-card span,
 .flow-card > span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 999px;
-  padding: 4px 9px;
-  background: rgba(255, 255, 255, 0.045);
-  color: #a1a1aa;
-  font-size: 11px;
-  font-weight: 700;
+  display: block;
+  width: fit-content;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  color: rgba(244, 244, 245, 0.34);
+  font-family: "Gabarito", "Be Vietnam Pro", sans-serif;
+  font-size: 13px;
+  font-weight: 720;
+  line-height: 0.9;
+  letter-spacing: 0.08em;
 }
 
 .proof-card h3,
 .flow-card h3 {
-  margin: 18px 0 8px;
+  margin: 34px 0 8px;
   color: var(--text);
   font-size: 19px;
   font-weight: 650;
@@ -520,7 +565,7 @@ select:disabled {
 }
 
 .flow-card {
-  display: block;
+  display: grid;
 }
 
 .flow-cta {
@@ -534,9 +579,9 @@ select:disabled {
   grid-template-columns: 246px minmax(0, 1fr);
   min-height: 100vh;
   background:
-    radial-gradient(circle at 86% 2%, rgba(255, 255, 255, 0.055), transparent 28%),
-    #0a0a0a;
-  transition: grid-template-columns 220ms ease;
+    radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.08), transparent 34%),
+    radial-gradient(circle at 16% 56%, rgba(255, 255, 255, 0.04), transparent 28%),
+    linear-gradient(180deg, #242427 0%, #151517 64%);
 }
 
 .app-shell.sidebar-collapsed {
@@ -553,12 +598,12 @@ select:disabled {
   padding: 24px 16px;
   border-right: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(20, 20, 20, 0.96), rgba(10, 10, 10, 0.98)),
-    rgba(12, 12, 12, 0.94);
-  backdrop-filter: blur(24px);
+    linear-gradient(180deg, rgba(36, 36, 39, 0.96), rgba(24, 24, 26, 0.97)),
+    rgba(22, 22, 24, 0.94);
+  backdrop-filter: blur(10px);
   transition:
-    padding 220ms ease,
-    background 220ms ease;
+    padding 160ms var(--ease-out),
+    background 160ms var(--ease-out);
 }
 
 .rail-brand-row {
@@ -571,24 +616,24 @@ select:disabled {
 .sidebar-toggle {
   position: absolute;
   top: 50%;
-  right: -17px;
+  right: -11px;
   z-index: 5;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 56px;
+  width: 22px;
+  height: 34px;
   min-width: 0;
   min-height: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0;
-  background: rgba(20, 20, 20, 0.94);
+  background: rgba(27, 27, 30, 0.96);
   color: var(--muted);
   transform: translateY(-50%);
   transition:
-    background 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease;
+    background 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out);
 }
 
 .sidebar-toggle:hover {
@@ -597,10 +642,19 @@ select:disabled {
   color: var(--text);
 }
 
-.sidebar-toggle svg,
+.sidebar-toggle svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .home-chip svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -624,7 +678,7 @@ select:disabled {
 }
 
 .side-rail.collapsed .sidebar-toggle {
-  right: -17px;
+  right: -11px;
 }
 
 .rail-panel {
@@ -735,7 +789,7 @@ select:disabled {
 }
 
 .field select option {
-  background: #171719;
+  background: #1b1b1e;
   color: var(--text);
 }
 
@@ -802,6 +856,20 @@ select:disabled {
   font-weight: 600;
 }
 
+.project-title.wordmark-title {
+  color: #f2f2f4;
+  font-family: "Gabarito", "Be Vietnam Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 820;
+  line-height: 1;
+}
+
+.project-title.wordmark-title em {
+  color: #c8c8cf;
+  font-style: normal;
+  font-weight: 560;
+}
+
 .product-row {
   display: flex;
   flex-wrap: wrap;
@@ -823,9 +891,9 @@ select:disabled {
   font-size: 12px;
   font-weight: 600;
   transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
+    background 160ms var(--ease-out),
+    border-color 160ms var(--ease-out),
+    color 160ms var(--ease-out);
 }
 
 .home-chip:hover {
@@ -864,7 +932,7 @@ select:disabled {
 
 .hero-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 350px);
   gap: 18px;
   margin-bottom: 16px;
   border: 1px solid var(--line);
@@ -873,6 +941,7 @@ select:disabled {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.026)),
     rgba(255, 255, 255, 0.026);
+  contain: layout paint;
 }
 
 .hero-copy {
@@ -930,7 +999,7 @@ select:disabled {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 16px;
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.032);
 }
 
 .workflow-guide {
@@ -950,6 +1019,7 @@ select:disabled {
   border-radius: 18px;
   padding: 13px 14px;
   background: rgba(255, 255, 255, 0.035);
+  contain: layout paint;
 }
 
 .workflow-step > span {
@@ -1093,7 +1163,7 @@ select:disabled {
 }
 
 .workbench-grid {
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(280px, 0.92fr) minmax(320px, 1.08fr);
   margin-bottom: 14px;
 }
 
@@ -1112,11 +1182,14 @@ select:disabled {
 .empty-state {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--surface);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.066), rgba(255, 255, 255, 0.036)),
+    rgba(255, 255, 255, 0.028);
+  contain: layout paint;
 }
 
 .panel {
-  padding: 16px;
+  padding: clamp(15px, 1.7vw, 18px);
 }
 
 .panel-heading {
@@ -1143,16 +1216,16 @@ select:disabled {
   position: relative;
   display: grid;
   grid-template-columns: 46px minmax(0, 1fr);
-  gap: 3px 12px;
+  gap: 4px 12px;
   align-items: center;
-  min-height: 112px;
+  min-height: 106px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius-md);
   padding: 16px;
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.028);
   transition:
-    border-color 180ms ease,
-    background 180ms ease;
+    border-color 160ms var(--ease-out),
+    background 160ms var(--ease-out);
 }
 
 .upload-target:hover {
@@ -1214,6 +1287,7 @@ select:disabled {
   padding: 4px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
+  contain: layout paint;
 }
 
 .mode-option {
@@ -1225,11 +1299,14 @@ select:disabled {
   background: transparent;
   color: var(--muted);
   text-align: center;
+  transition:
+    background 160ms var(--ease-out),
+    color 160ms var(--ease-out);
 }
 
 .mode-option.active {
   background: #a1a1aa;
-  color: #0a0a0a;
+  color: #111113;
 }
 
 .mode-option strong {
@@ -1288,7 +1365,7 @@ select:disabled {
 
 .process-list li.done span {
   background: #a1a1aa;
-  color: #0a0a0a;
+  color: #111113;
 }
 
 .process-list strong {
@@ -1298,7 +1375,11 @@ select:disabled {
 }
 
 .metric-card {
+  display: flex;
+  min-width: 0;
   min-height: 78px;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 14px;
 }
 
@@ -1396,7 +1477,7 @@ select:disabled {
   margin: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: #070708;
+  background: #111113;
   color: #e8e8ed;
   padding: 14px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -1428,7 +1509,8 @@ select:disabled {
 .result-card {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.028);
+  contain: layout paint;
   overflow: hidden;
 }
 
@@ -1540,16 +1622,12 @@ select:disabled {
 
 @media (prefers-reduced-motion: no-preference) {
   .landing-copy,
-  .product-preview,
-  .hero-panel,
-  .panel,
-  .metric-card,
-  .empty-state {
-    animation: rise-in 520ms ease both;
+  .product-preview {
+    animation: rise-in 420ms var(--ease-out) both;
   }
 
   .product-preview {
-    animation-delay: 90ms;
+    animation-delay: 70ms;
   }
 
   @keyframes rise-in {
@@ -1579,8 +1657,14 @@ select:disabled {
 
   .preview-grid,
   .hero-panel,
+  .workbench-grid,
   .analysis-grid {
     grid-template-columns: 1fr;
+  }
+
+  .workflow-guide,
+  .metric-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .app-shell {
@@ -1592,41 +1676,7 @@ select:disabled {
   }
 
   .side-rail {
-    position: sticky;
-    z-index: 4;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
-    padding: 14px clamp(18px, 3vw, 42px);
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .sidebar-toggle {
-    position: static;
-    width: 38px;
-    height: 38px;
-    transform: none;
-  }
-
-  .side-rail.collapsed {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 14px clamp(18px, 3vw, 42px);
-  }
-
-  .side-rail.collapsed .brand {
-    display: flex;
-  }
-
-  .side-rail.collapsed .rail-brand-row {
-    width: auto;
-  }
-
-  .side-rail .brand {
-    flex: 0 0 auto;
+    display: none;
   }
 
   .runtime-panel,
@@ -1699,7 +1749,7 @@ select:disabled {
   }
 
   .landing-copy h1 {
-    font-size: 42px;
+    font-size: 40px;
   }
 
   .side-rail,
@@ -1707,6 +1757,16 @@ select:disabled {
   .mode-control,
   .action-row {
     grid-template-columns: 1fr;
+  }
+
+  .landing-hero {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .proof-card,
+  .flow-card {
+    padding: 19px;
   }
 
   .topbar h1 {

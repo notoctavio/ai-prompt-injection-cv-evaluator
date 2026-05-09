@@ -284,9 +284,9 @@ function LandingPage({ onStart }) {
           <h2>A clear attack and defense story for your presentation.</h2>
         </div>
         <div className="proof-grid">
-          <ProofCard index="Signal" title="Hidden content" text="A normal-looking PDF can contain instructions that extraction tools still pass to the model." />
-          <ProofCard index="Takeover" title="Model takeover" text="The vulnerable evaluator can treat resume text as an instruction instead of candidate data." />
-          <ProofCard index="Defense" title="Prompt isolation" text="The protected path reframes the CV as untrusted evidence and compares the behavior." />
+          <ProofCard index="01" title="Hidden content" text="A normal-looking PDF can contain instructions that extraction tools still pass to the model." />
+          <ProofCard index="02" title="Model takeover" text="The vulnerable evaluator can treat resume text as an instruction instead of candidate data." />
+          <ProofCard index="03" title="Prompt isolation" text="The protected path reframes the CV as untrusted evidence and compares the behavior." />
         </div>
       </section>
 
@@ -296,9 +296,9 @@ function LandingPage({ onStart }) {
           <h2>Built for a fast, visual classroom demo.</h2>
         </div>
         <div className="flow-cards">
-          <FlowCard step="Intake" title="Load CV" text="Upload a resume or pick the poisoned sample." />
-          <FlowCard step="X-Ray" title="Reveal extraction" text="Show what the AI reads through the X-Ray panel." />
-          <FlowCard step="Compare" title="Compare outputs" text="Run vulnerable and protected evaluations side by side." />
+          <FlowCard step="01" title="Load CV" text="Upload a resume or pick the poisoned sample." />
+          <FlowCard step="02" title="Reveal extraction" text="Show what the AI reads through the X-Ray panel." />
+          <FlowCard step="03" title="Compare outputs" text="Run vulnerable and protected evaluations side by side." />
         </div>
         <button className="button hero-primary flow-cta" type="button" onClick={onStart}>
           Open review desk
@@ -418,7 +418,7 @@ function ReviewApp(props) {
                 <ArrowLeftIcon />
                 <span>Overview</span>
               </button>
-              <p className="project-title">{PRODUCT_NAME}</p>
+              <p className="project-title wordmark-title">Guardify <em>AI</em></p>
             </div>
             <h1>Candidate review</h1>
           </div>
@@ -499,8 +499,10 @@ function ReviewApp(props) {
 function Brand({ compact = false }) {
   return (
     <div className={compact ? "brand compact" : "brand"}>
-      <strong>{PRODUCT_NAME}</strong>
-      <span>Secure CV intelligence</span>
+      <div className="brand-copy">
+        <strong className="wordmark">Guardify <em>AI</em></strong>
+        <span>Secure CV intelligence</span>
+      </div>
     </div>
   );
 }
