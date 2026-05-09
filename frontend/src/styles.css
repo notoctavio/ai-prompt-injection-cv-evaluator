@@ -35,7 +35,7 @@
   src: url("/fonts/gabarito-latin-wght-normal.woff2") format("woff2");
   font-weight: 400 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -71,6 +71,7 @@
   --radius-lg: 22px;
   --radius-md: 16px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-duration: 620ms;
 }
 
 * {
@@ -187,6 +188,31 @@ select:disabled {
   transform: translateX(-50%);
 }
 
+.landing-page [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance, 14px), 0);
+  transition:
+    opacity var(--reveal-duration) var(--ease-out) var(--reveal-delay, 0ms),
+    transform var(--reveal-duration) var(--ease-out) var(--reveal-delay, 0ms);
+  backface-visibility: hidden;
+  will-change: opacity, transform;
+}
+
+.landing-page [data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+.landing-nav[data-reveal] {
+  --reveal-distance: -8px;
+  transform: translateX(-50%) translate3d(0, var(--reveal-distance), 0);
+}
+
+.landing-nav[data-reveal].is-visible {
+  transform: translateX(-50%) translate3d(0, 0, 0);
+}
+
 .landing-nav > div:last-child {
   display: flex;
   align-items: center;
@@ -299,6 +325,7 @@ select:disabled {
 
 .landing-copy {
   min-width: 0;
+  --reveal-distance: 14px;
 }
 
 .landing-copy h1 {
@@ -347,6 +374,8 @@ select:disabled {
   box-shadow: 0 24px 62px rgba(0, 0, 0, 0.3);
   contain: layout paint;
   text-align: left;
+  --reveal-delay: 120ms;
+  --reveal-distance: 16px;
 }
 
 .preview-window-bar {
@@ -476,6 +505,7 @@ select:disabled {
   max-width: 780px;
   margin: 0 auto 30px;
   text-align: center;
+  --reveal-distance: 12px;
 }
 
 .section-intro h2 {
@@ -515,6 +545,17 @@ select:disabled {
     transparent;
   box-shadow: none;
   contain: layout paint;
+  --reveal-distance: 12px;
+}
+
+.proof-card:nth-child(2),
+.flow-card:nth-child(2) {
+  --reveal-delay: 90ms;
+}
+
+.proof-card:nth-child(3),
+.flow-card:nth-child(3) {
+  --reveal-delay: 180ms;
 }
 
 .proof-card:not(:last-child)::after,
@@ -1623,25 +1664,16 @@ select:disabled {
   line-height: 1.52;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .landing-copy,
-  .product-preview {
-    animation: rise-in 420ms var(--ease-out) both;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  .product-preview {
-    animation-delay: 70ms;
-  }
-
-  @keyframes rise-in {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .landing-page [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
   }
 }
 

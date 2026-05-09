@@ -213,10 +213,49 @@ function App() {
   );
 }
 
+function useLandingReveal() {
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll(".landing-page [data-reveal]"));
+    if (!elements.length) {
+      return undefined;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          observer.unobserve(entry.target);
+          window.requestAnimationFrame(() => {
+            entry.target.classList.add("is-visible");
+          });
+        });
+      },
+      {
+        rootMargin: "0px 0px -6% 0px",
+        threshold: 0.08,
+      },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+}
+
 function LandingPage({ onStart }) {
+  useLandingReveal();
+
   return (
     <main className="landing-page">
-      <nav className="landing-nav" aria-label="Landing navigation">
+      <nav className="landing-nav" aria-label="Landing navigation" data-reveal>
         <Brand compact />
         <div>
           <a href="#proof">Proof</a>
@@ -228,7 +267,7 @@ function LandingPage({ onStart }) {
       </nav>
 
       <section className="landing-hero">
-        <div className="landing-copy">
+        <div className="landing-copy" data-reveal>
           <h1>Expose hidden prompt injection inside AI CV screening.</h1>
           <p>
             {PRODUCT_NAME} presents a realistic recruiter workflow where a poisoned resume can manipulate
@@ -244,7 +283,7 @@ function LandingPage({ onStart }) {
           </div>
         </div>
 
-        <div className="product-preview" aria-label="Product preview">
+        <div className="product-preview" aria-label="Product preview" data-reveal>
           <div className="preview-window-bar">
             <div className="window-dots" aria-hidden="true">
               <span className="dot red" />
@@ -279,7 +318,7 @@ function LandingPage({ onStart }) {
       </section>
 
       <section className="landing-section proof-section" id="proof">
-        <div className="section-intro">
+        <div className="section-intro" data-reveal>
           <h2>A hidden instruction changes the hiring decision.</h2>
         </div>
         <div className="proof-grid">
@@ -290,7 +329,7 @@ function LandingPage({ onStart }) {
       </section>
 
       <section className="landing-section flow-showcase" id="flow">
-        <div className="section-intro">
+        <div className="section-intro" data-reveal>
           <h2>Run the demo in three clean steps.</h2>
         </div>
         <div className="flow-cards">
@@ -507,7 +546,7 @@ function Brand({ compact = false }) {
 
 function ProofCard({ index, title, text }) {
   return (
-    <article className="proof-card">
+    <article className="proof-card" data-reveal>
       <span className="card-index">{index}</span>
       <div className="card-copy">
         <h3>{title}</h3>
@@ -519,7 +558,7 @@ function ProofCard({ index, title, text }) {
 
 function FlowCard({ step, title, text }) {
   return (
-    <article className="flow-card">
+    <article className="flow-card" data-reveal>
       <span className="card-index">{step}</span>
       <div className="card-copy">
         <h3>{title}</h3>
