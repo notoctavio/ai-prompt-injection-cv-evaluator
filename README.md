@@ -4,6 +4,9 @@ Small Proof of Concept for a university digital security project. It shows how
 hidden text inside a PDF CV can manipulate an AI evaluator through indirect
 prompt injection, then compares the result with a protected prompt.
 
+The primary app is now a professional React + FastAPI interface. The older
+Streamlit prototype is still available in `app.py` if you want a simple fallback.
+
 ## What The Demo Shows
 
 - A normal-looking PDF can contain hidden text.
@@ -19,7 +22,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create a `.env` file or enter the key in the sidebar:
+Install the React frontend dependencies:
+
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+Create a `.env` file:
 
 ```bash
 GROQ_API_KEY=your_groq_api_key_here
@@ -30,6 +41,27 @@ The app also includes a deterministic demo fallback, so the interface can be
 tested without an API key.
 
 ## Run
+
+Backend:
+
+```bash
+.venv/bin/uvicorn backend:app --reload --port 8000
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run dev -- --port 8501
+```
+
+Open:
+
+```text
+http://localhost:8501
+```
+
+Optional Streamlit fallback:
 
 ```bash
 streamlit run app.py

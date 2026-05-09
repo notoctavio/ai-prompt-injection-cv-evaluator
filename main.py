@@ -1,5 +1,6 @@
 def main():
-    print("Run the demo with: streamlit run app.py")
+    print("Run the backend with: .venv/bin/uvicorn backend:app --reload --port 8000")
+    print("Run the frontend with: cd frontend && npm run dev -- --port 8501")
 
 
 if __name__ == "__main__":
